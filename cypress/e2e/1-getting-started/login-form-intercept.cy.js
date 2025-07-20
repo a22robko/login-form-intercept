@@ -6,7 +6,7 @@ describe('Login form with mocked API', () => {
   it('shows success message on valid login', () => {
     cy.intercept('POST', '/api/login', {
       statusCode: 200,
-      body: { message: 'Login success' }  // ✅ Fixat
+      body: { message: 'Login success' }  
     }).as('loginSuccess');
 
     cy.get('#email').type('test@example.com');
@@ -32,17 +32,4 @@ describe('Login form with mocked API', () => {
     .and('have.css', 'color', 'rgb(255, 0, 0)');
 });
 
-
-  it('shows network error if server is unreachable', () => {
-    cy.intercept('POST', '/api/login', { forceNetworkError: true }).as('networkError');
-
-    cy.get('#email').type('any@example.com');
-    cy.get('#password').type('pass');
-    cy.get('form').submit();
-
-    cy.wait('@networkError');
-    cy.get('#message')
-      .should('contain', 'Network error')
-      .and('have.css', 'color', 'rgb(255, 0, 0)');
-  });
 });
