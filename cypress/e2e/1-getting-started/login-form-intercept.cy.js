@@ -12,7 +12,7 @@ describe('Login form with mocked API', () => {
     cy.get('#email').type('test@example.com');
     cy.get('#password').type('password');
     cy.get('form').submit();
-
+    
     cy.wait('@loginSuccess');
     cy.get('#message')
       .should('contain', 'Login success')
