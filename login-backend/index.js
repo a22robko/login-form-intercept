@@ -1,21 +1,21 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const PORT = 3000;
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const msg = document.getElementById('message');
 
-app.use(cors());
-app.use(express.json());
+  try {
+    const res = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-app.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
-
-  if (email === 'test@example.com' && password === 'password') {
-    res.status(200).json({ message: 'Login success' });
-  } else {
-    res.status(401).json({ message: 'Login failed' });
+    const data = await res.json();
+    msg.textContent = data.message;
+    msg.style.color = res.ok ? 'green' : 'red';
+  } catch (err) {
+    msg.textContent = 'Network error';
+    msg.style.color = 'red';
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
 });
