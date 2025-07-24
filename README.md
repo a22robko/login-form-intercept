@@ -1,6 +1,7 @@
 <p align="center">
-  <h2><strong>Cypress: Intercept av login-formulär</strong></h2>
+  <strong><span style="font-size: 24px;">Cypress: Intercept av login-formulär</span></strong>
 </p>
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/090f02c8-92a5-41ae-8cac-5b6031f6a8e6" width="600" />
 </p>
