@@ -9,10 +9,10 @@ app.use(express.json());
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
 
-  if (email === 'test@example.com' && password === '123') {
+  if (email === 'test@example.com' && password === 'password') {
     res.status(200).json({ message: 'Login success' });
   } else {
-    res.status(401).json({ message: 'Invalid credentials' });
+    res.status(401).json({ message: 'Login failed' });
   }
 });
 
